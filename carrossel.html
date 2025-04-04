@@ -6,54 +6,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carrossel de Imagens</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f0f0f0;
-    }
-
     .carousel {
-      width: 80%;
-      max-width: 600px;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .carousel-images {
-      display: flex;
-      width: 300%;
-      animation: slide 12s infinite;
-    }
-
-    .carousel-images img {
-      width: 100%;
-      height: auto;
-    }
-
-    @keyframes slide {
-      0% { transform: translateX(0%); }
-      33% { transform: translateX(-100%); }
-      66% { transform: translateX(-200%); }
-      100% { transform: translateX(0%); }
-    }
+            width: 100%;
+            max-width: 360px;
+            overflow: hidden;
+            position: relative;
+            margin: 8px;
+        }
+        .carousel-images {
+            display: flex;
+            width: 100%; /* Ajuste conforme o número de imagens */
+            transition: transform 0.5s ease;
+        }
+        .carousel input {
+            display: none;
+        }
+        .carousel-slide {
+            width: 100%;
+            flex: 1 0 100%;
+        }
+        .carousel-slide img {
+            width: 100%;
+            max-width: 360px;
+            height: 240px;
+            display: block;
+            border-radius: 10px;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .carousel-controls label {
+            width: 15px;
+            height: 15px;
+            background: gray;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #slide1:checked ~ .carousel-images { transform: translateX(0); }
+        #slide2:checked ~ .carousel-images { transform: translateX(-100%); }
+        #slide3:checked ~ .carousel-images { transform: translateX(-200%); }
+        
+        .carousel-controls label:hover, input:checked + .carousel-controls label {
+            background: black;
+        }
   </style>
 </head>
 <body>
   <div class="carousel">
+    <input type="radio" name="carousel" id="slide1" checked>
+    <input type="radio" name="carousel" id="slide2">
+    <input type="radio" name="carousel" id="slide3">
+    
     <div class="carousel-images">
-      <img src="https://imgur.com/9JPO42t.png" alt="Imagem 1">
-      <img src="https://imgur.com/m3wKNOe.png" alt="Imagem 2">
-      <img src="https://imgur.com/m3N454E.png" alt="Imagem 3">
+        <div class="carousel-slide">
+            <img src="https://imgur.com/9JPO42t.png" alt="Imagem 1">
+        </div>
+        <div class="carousel-slide">
+            <img src="https://imgur.com/m3wKNOe.png" alt="Imagem 2">
+        </div>
+        <div class="carousel-slide">
+            <img src="https://imgur.com/m3N454E.png" alt="Imagem 3">
+        </div>
     </div>
-  </div>
+    
+    <div class="carousel-controls">
+        <label for="slide1"></label>
+        <label for="slide2"></label>
+        <label for="slide3"></label>
+    </div>
+</div>
 </body>
 </html>
